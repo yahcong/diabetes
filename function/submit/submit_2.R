@@ -12,6 +12,7 @@ local_data=subset(local_data,select = -c(`*Alkaline phosphatase`, `Basophil%`, `
 
 test_set=na.omit(local_data)
 test_set$BloodSugar=predict(model_gbm,test_set)
+
 result=merge(new_test[,1],subset(test_set,select = c(id,BloodSugar)),by="id",all=T)
 result$BloodSugar[is.na(result$BloodSugar)]=median(na.omit(result$BloodSugar))
 predict_data=round(result$BloodSugar,3)
