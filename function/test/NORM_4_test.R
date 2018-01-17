@@ -5,12 +5,6 @@ load("data/test_max_min_set.rda")
 
 test_data_NORM=test_max_min_set[,c(1,2,3,37)]
 local_data=test_max_min_set
-#str(local_data)
-#names(local_data)
-# [1] "id"         "gender"     "age"        "AST"        "ALT"        "ALP"        "GGT"        "TP"         "ALB"       
-# [10] "GLP"        "A_G"        "TG"         "CHOL"       "HDL_C"      "LDL_C"      "BUN"        "CREA"       "UA"        
-# [19] "WBC"        "RBC"        "HGB"        "HCT"        "MCV"        "MCH"        "MCHC"       "RDW_CV"     "PLT"       
-# [28] "MPV"        "PDW"        "PCT"        "NEUT"       "LYMPH"      "MONO"       "EO"         "BASO"      "weekday" ...
 
 #数据/(MAX_MIN)
 test_data_NORM$AST_NORM=(local_data$AST-local_data$AST_MIN)/(local_data$AST_MAX-local_data$AST_MIN)
@@ -46,8 +40,15 @@ test_data_NORM$LYMPH_NORM=(local_data$LYMPH-local_data$LYMPH_MIN)/(local_data$LY
 test_data_NORM$MONO_NORM=(local_data$MONO-local_data$MONO_MIN)/(local_data$MONO_MAX-local_data$MONO_MIN)
 test_data_NORM$EO_NORM=(local_data$EO-local_data$EO_MIN)/(local_data$EO_MAX-local_data$EO_MIN)
 test_data_NORM$BASO_NORM=(local_data$BASO-local_data$BASO_MIN)/(local_data$BASO_MAX-local_data$BASO_MIN)
-
+#GLU
+test_data_NORM$GLU=local_data$GLU
+#age
+max_age=max(test_data_NORM$age)
+min_age=min(test_data_NORM$age)
+test_data_NORM$age=(test_data_NORM$age-min_age)/(max_age-min_age)
 save(test_data_NORM,file="data/output/test_data_NORM.rda")
 load("data/output/test_data_NORM.rda")
+
+
 
 

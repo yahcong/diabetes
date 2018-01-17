@@ -47,9 +47,25 @@ train_data_NORM$LYMPH_NORM=(local_data$LYMPH-local_data$LYMPH_MIN)/(local_data$L
 train_data_NORM$MONO_NORM=(local_data$MONO-local_data$MONO_MIN)/(local_data$MONO_MAX-local_data$MONO_MIN)
 train_data_NORM$EO_NORM=(local_data$EO-local_data$EO_MIN)/(local_data$EO_MAX-local_data$EO_MIN)
 train_data_NORM$BASO_NORM=(local_data$BASO-local_data$BASO_MIN)/(local_data$BASO_MAX-local_data$BASO_MIN)
-#train_data_NORM$GLU_NORM=local_data$GLU/(local_data$GLU_MAX-local_data$GLU_MIN)
+#GLU
 train_data_NORM$GLU=local_data$GLU
+#age
+max_age=max(train_data_NORM$age)
+min_age=min(train_data_NORM$age)
+train_data_NORM$age=(train_data_NORM$age-min_age)/(max_age-min_age)
 save(train_data_NORM,file="data/output/train_data_NORM.rda")
 load("data/output/train_data_NORM.rda")
 
+
+#对GLU归一化
+train_data_NORM_GLU=train_data_NORM
+MAX_GLU=6.11
+MIN_GLU=3.89
+save(MAX_GLU,file="data/output/MAX_GLU.rda")
+load("data/output/MAX_GLU.rda")
+save(MIN_GLU,file="data/output/MIN_GLU.rda")
+load("data/output/MIN_GLU.rda")
+train_data_NORM_GLU$GLU_NORM=local_data$GLU/(MAX_GLU-MIN_GLU)
+save(train_data_NORM_GLU,file="data/output/train_data_NORM_GLU.rda")
+load("data/output/train_data_NORM_GLU.rda")
 
