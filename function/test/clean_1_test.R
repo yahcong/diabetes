@@ -42,10 +42,10 @@ local_train$gender=as.factor(local_train$gender)
 #2 日期
 table(local_train$date)
 #date都是2017/10， 变为周的属性:0_6
-local_train$weekday=format(as.Date(local_train$date),'%w')
-local_train$weekday=as.factor(local_train$weekday)
+#local_train$weekday=format(as.Date(local_train$date),'%w')
+#local_train$weekday=as.factor(local_train$weekday)
 
 new_train = subset(local_train, select = -date )
-test_clean_data=local_train
+test_clean_data=new_train
 save(test_clean_data,file="data/output/test_clean_data.rda")
 load("data/output/test_clean_data.rda")

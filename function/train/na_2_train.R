@@ -1,9 +1,9 @@
 rm(list=ls())
 library(data.table)
 setwd("F:/DataMining/R/diabetes")
-load("data/output/clean_data.rda")
+load("data/output/qutlier_data.rda")
 
-local_data=clean_data
+local_data=qutlier_data
 #library(mice)
 #md.pattern(local_data)
 
